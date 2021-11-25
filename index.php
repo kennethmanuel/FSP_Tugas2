@@ -66,44 +66,21 @@
 			<table style="margin-left: auto;margin-right: auto;">
         	<tr>
             	<td>
-                	<button id="1">
+                	<button id="1" class="button_board">
                     	<img class="circle" src="res/circle.png" alt="" hidden>
                     	<img class="cross" src="res/cross.png" alt="" hidden>
                     	<img class="none" src="res/none.png" alt="" hidden>
                 	</button>
             	</td>
             	<td>
-                	<button id="2">
+                	<button id="2" class="button_board">
                     	<img class="circle" src="res/circle.png" alt="" hidden>
                     	<img class="cross" src="res/cross.png" alt="" hidden>
                     	<img class="none" src="res/none.png" alt="">
                 	</button>
             	</td>
             	<td>
-                	<button id="3">
-                    	<img class="circle" src="res/circle.png" alt="" hidden>
-                    	<img class="cross" src="res/cross.png" alt="" hidden>
-                    	<img class="none" src="res/none.png" alt="">
-                	</button>
-            	</td>
-        	</tr>
-        	<tr>
-            	<td>
-                	<button id="4">
-                    	<img class="circle" src="res/circle.png" alt="" hidden>
-                    	<img class="cross" src="res/cross.png" alt="" hidden>
-                    	<img class="none" src="res/none.png" alt="">
-                	</button>
-            	</td>
-            	<td>
-                	<button id="5">
-                    	<img class="circle" src="res/circle.png" alt="" hidden>
-                    	<img class="cross" src="res/cross.png" alt="" hidden>
-                    	<img class="none" src="res/none.png" alt="">
-                	</button>
-            	</td>
-            	<td>
-                	<button id="6">
+                	<button id="3" class="button_board">
                     	<img class="circle" src="res/circle.png" alt="" hidden>
                     	<img class="cross" src="res/cross.png" alt="" hidden>
                     	<img class="none" src="res/none.png" alt="">
@@ -112,21 +89,44 @@
         	</tr>
         	<tr>
             	<td>
-                	<button id="7">
+                	<button id="4" class="button_board">
                     	<img class="circle" src="res/circle.png" alt="" hidden>
                     	<img class="cross" src="res/cross.png" alt="" hidden>
                     	<img class="none" src="res/none.png" alt="">
                 	</button>
             	</td>
             	<td>
-                	<button id="8">
+                	<button id="5" class="button_board">
                     	<img class="circle" src="res/circle.png" alt="" hidden>
                     	<img class="cross" src="res/cross.png" alt="" hidden>
                     	<img class="none" src="res/none.png" alt="">
                 	</button>
             	</td>
             	<td>
-                	<button id="9">
+                	<button id="6" class="button_board">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+        	</tr>
+        	<tr>
+            	<td>
+                	<button id="7" class="button_board">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="8" class="button_board">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="9" class="button_board">
                     	<img class="circle" src="res/circle.png" alt="" hidden>
                     	<img class="cross" src="res/cross.png" alt="" hidden>
                     	<img class="none" src="res/none.png" alt="">
@@ -156,7 +156,7 @@
             $('#' + i).children(".none").show();
         }
 
-        $('button').click(function() {
+        $('.button_board').click(function() {
             if (last_turn !== role) {
                 last_turn = role;
                 $(this).children('*').hide();
@@ -227,7 +227,7 @@
                 // $("#textku").text(stateOfBoard);
 
             })
-        }, 10);
+        }, 2000);
 
         $('input').click(function() {
             role = $(this).val();
@@ -235,8 +235,9 @@
 
         $('#restart').click(function() {
             $("h1").hide();
-            role = "none";
+            role = '<?php echo $role ?>';
             last_turn = "cross";
+            window.alert("Role = " + role +  " last_turn = " + last_turn);
             stateOfBoard = ["none", "none", "none",
                 "none", "none", "none",
                 "none", "none", "none"
@@ -244,7 +245,7 @@
             stateOfBoard_json = JSON.stringify(stateOfBoard);
             $.post(ajax_aldo, {
                 stateOfBoard: stateOfBoard_json,
-                role: role
+                role: last_turn
             }).done(function(data_dr_server) {
                 // $("#textku").text(data_dr_server);
             });
