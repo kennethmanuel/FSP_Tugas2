@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>title1</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/variabel_path.js"></script>
+    <script type="text/javascript" src="js/variable_path.js"></script>
     <style>	
         table,
         tr,
@@ -168,7 +168,7 @@
                     stateOfBoard[this.id - 1] = "x";
                 }
                 stateOfBoard_json = JSON.stringify(stateOfBoard);
-                $.post(ajax_aldo, {
+                $.post(ajax_boardState, {
                     stateOfBoard: stateOfBoard_json,
                     role: role
                 }).done(function(data_dr_server) {
@@ -179,7 +179,7 @@
         });
 
         setInterval(function() {
-            $.post(ajax2_aldo, {}).done(function(data_dr_server) {
+            $.post(ajax_updateBoard, {}).done(function(data_dr_server) {
                 $("#textku").text(data_dr_server);
                 array_data_dr_server = data_dr_server.split("//");
                 stateOfBoard = $.parseJSON(array_data_dr_server[0]);
@@ -243,7 +243,7 @@
                 "none", "none", "none"
             ];
             stateOfBoard_json = JSON.stringify(stateOfBoard);
-            $.post(ajax_aldo, {
+            $.post(ajax_boardState, {
                 stateOfBoard: stateOfBoard_json,
                 role: last_turn
             }).done(function(data_dr_server) {
