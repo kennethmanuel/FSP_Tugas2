@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2021 at 11:44 AM
+-- Generation Time: Nov 25, 2021 at 03:19 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -30,8 +30,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `tictactoe` (
   `id` int(11) NOT NULL,
   `board_state` varchar(150) NOT NULL,
-  `turn` varchar(50) NOT NULL
+  `last_turn` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tictactoe`
+--
+
+INSERT INTO `tictactoe` (`id`, `board_state`, `last_turn`) VALUES
+(1, '[\"o\",\"o\",\"o\",\"x\",\"x\",\"x\",\"none\",\"o\",\"none\"]', 'circle');
 
 --
 -- Indexes for dumped tables
@@ -51,7 +58,7 @@ ALTER TABLE `tictactoe`
 -- AUTO_INCREMENT for table `tictactoe`
 --
 ALTER TABLE `tictactoe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
