@@ -28,92 +28,89 @@
 
 
 <body>
-    <div>Player1 (Circle) &larr;</div>
-    <div>Player2 (Cross)</div>
-    <form action="">
-        <input id="radio_circle" type="radio" value="circle" name="role" checked="checked">
-        <label for="radio_circle">Circle</label>
-
-        <input id="radio_cross" type="radio" value="cross" name="role">
-        <label for="radio_cross">Cross</label>
-
-
-    </form>
-
-    <table>
-        <tr>
-            <td>
-                <button id="1">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="" hidden>
-                </button>
-            </td>
-            <td>
-                <button id="2">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-            <td>
-                <button id="3">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button id="4">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-            <td>
-                <button id="5">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-            <td>
-                <button id="6">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button id="7">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-            <td>
-                <button id="8">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-            <td>
-                <button id="9">
-                    <img class="circle" src="res/circle.png" alt="" hidden>
-                    <img class="cross" src="res/cross.png" alt="" hidden>
-                    <img class="none" src="res/none.png" alt="">
-                </button>
-            </td>
-        </tr>
-    </table>
-    <p id="textku">For debug</p>
-    <h1 hidden>The winner is None</h1>
-    <button id="restart">Restart</button>
+	<div style="text-align: center;">
+		<h1> Tic Tac Toe</h1>
+		<?php	
+			$role = $_POST['role'];	
+			echo "<div style = 'text-align:center;'><h3>My Role : $role</h3></div>";	
+		?>
+		<div>Player1 (Circle) &larr;</div>
+    	<div>Player2 (Cross)</div>    	
+    	<table style="margin-left: auto;margin-right: auto;">
+        	<tr>
+            	<td>
+                	<button id="1">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="" hidden>
+                	</button>
+            	</td>
+            	<td>
+                	<button id="2">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="3">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+        	</tr>
+        	<tr>
+            	<td>
+                	<button id="4">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="5">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="6">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+        	</tr>
+        	<tr>
+            	<td>
+                	<button id="7">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="8">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+            	<td>
+                	<button id="9">
+                    	<img class="circle" src="res/circle.png" alt="" hidden>
+                    	<img class="cross" src="res/cross.png" alt="" hidden>
+                    	<img class="none" src="res/none.png" alt="">
+                	</button>
+            	</td>
+        	</tr>
+    	</table>
+    	<p id="textku">For debug</p>
+    	<h1 hidden>The winner is None</h1>
+    	<button id="restart">Restart</button>
+	</div>    
 </body>
 
 <script>
