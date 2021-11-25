@@ -10,3 +10,4 @@ $data_dr_server = $data['board_state'] . "//" . $data['last_turn'];
 echo $data_dr_server;
 
 $mysqli->close();
+?>
