@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['role']))
+	{
+		header('location:login.php');
+	}	
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +14,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>title1</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/variabel_path.js"></script>
     <style>
+    	body{
+    		padding: 0px; 
+    		margin: 0px;
+    	}
         table,
         tr,
         td {
             border: 1px solid black;
+        }
+        #containertable{
+        	max-width: 100%;
         }
     </style>
 </head>
@@ -31,12 +46,27 @@
 	<div style="text-align: center;">
 		<h1> Tic Tac Toe</h1>
 		<?php	
-			$role = $_POST['role'];	
-			echo "<div style = 'text-align:center;'><h3>My Role : $role</h3></div>";	
+			if(isset($_POST['role']))
+			{
+				$role = $_POST['role'];		
+				$_SESSION['role'] = $role;						
+			}
+			else{
+				$role = $_SESSION['role'];
+			}
+			echo "<div style = 'text-align:center;'><h3>My Role : $role</h3></div>";
 		?>
-		<div>Player1 (Circle) &larr;</div>
-    	<div>Player2 (Cross)</div>    	
-    	<table style="margin-left: auto;margin-right: auto;">
+		<div>Player1 (Circle) <span id="turn_circle">&larr;</span></div>
+    	<div>Player2 (Cross) <span id="turn_cross" hidden>&larr;</span></div> 
+    	<form action="index.php" method="POST">
+				<input id="radio_circle" type="radio" value="circle" name="role" checked="checked">
+        		<label for="radio_circle">Circle</label>
+
+        		<input id="radio_cross" type="radio" value="cross" name="role">
+        		<label for="radio_cross">Cross</label><br><br>        		
+			</form>   	
+		<div id="containertable">
+			<table style="margin-left: auto;margin-right: auto;">
         	<tr>
             	<td>
                 	<button id="1">
@@ -107,6 +137,8 @@
             	</td>
         	</tr>
     	</table>
+		</div>
+    	
     	<p id="textku">For debug</p>
     	<h1 hidden>The winner is None</h1>
     	<button id="restart">Restart</button>
@@ -122,7 +154,7 @@
     ];
     var stateOfBoard_json = "";
 
-    $(document).ready(function() {
+    $(document).ready(function() {    	
         for (let i = 1; i < stateOfBoard.length + 1; i++) {
             $('#' + i).children(".none").show();
         }
@@ -133,12 +165,17 @@
                 $(this).children('*').hide();
                 $(this).children("." + role).show();
                 if (role == "circle") {
-                    stateOfBoard[this.id - 1] = "o"
+                    stateOfBoard[this.id - 1] = "o";
+                     $('#turn_circle').hide();
+                    $('#turn_cross').show();
+                  
                 } else {
                     stateOfBoard[this.id - 1] = "x";
+                      $('#turn_circle').show();
+                    $('#turn_cross').hide();
                 }
                 stateOfBoard_json = JSON.stringify(stateOfBoard);
-                $.post("http://localhost/full-stack/FSP_Tugas2/ajax.php", {
+                $.post(ajax_aldo, {
                     stateOfBoard: stateOfBoard_json,
                     role: role
                 }).done(function(data_dr_server) {
@@ -149,7 +186,7 @@
         });
 
         setInterval(function() {
-            $.post("http://localhost/full-stack/FSP_Tugas2/ajax2.php", {}).done(function(data_dr_server) {
+            $.post(ajax2_aldo, {}).done(function(data_dr_server) {
                 $("#textku").text(data_dr_server);
                 array_data_dr_server = data_dr_server.split("//");
                 stateOfBoard = $.parseJSON(array_data_dr_server[0]);
@@ -188,7 +225,7 @@
                 // $("#textku").text(stateOfBoard);
 
             })
-        }, 10);
+        }, 2000);
 
         $('input').click(function() {
             role = $(this).val();
@@ -202,7 +239,7 @@
                 "none", "none", "none"
             ];
             stateOfBoard_json = JSON.stringify(stateOfBoard);
-            $.post("http://localhost/full-stack/FSP_Tugas2/ajax.php", {
+            $.post(ajax_aldo, {
                 stateOfBoard: stateOfBoard_json,
                 role: role
             }).done(function(data_dr_server) {
