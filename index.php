@@ -28,6 +28,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/variable_path.js"></script>
     <style>	
+    	p{
+    		color: white;
+    	}
+
+    	body{
+    		background: black;
+    	}
         table,
         tr,
         td {
@@ -38,7 +45,48 @@
     			padding: 0px; 
     			margin: 0px;
     		}
-        }        
+        }  
+        #restart{
+        	appearance: none;
+  			background-color: white;
+  			border: 2px solid #1A1A1A;
+  			border-radius: 15px;
+  			box-sizing: border-box;
+  			color: #3B3B3B;
+  			cursor: pointer;
+  			display: inline-block;
+  			
+  			font-size: 20px;
+  			font-weight: 600;
+  			line-height: normal;
+  			margin: 0;
+  			min-height: 60px;
+  			min-width: 0;
+  			outline: none;
+  			padding: 16px 24px;
+  			text-align: center;
+  			text-decoration: none;
+  			transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  			user-select: none;
+  			-webkit-user-select: none;
+  			touch-action: manipulation;
+  			width: 100%;
+  			will-change: transform;
+        } 
+        #restart:disabled{
+        	pointer-events: none;
+        } 
+        #restart:hover {
+  			color: green;
+  			background-color: lightgreen;
+  			box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  			transform: translateY(-2px);
+  		}
+
+		#restart:active {
+  			box-shadow: none;
+  			transform: translateY(0);
+		}     
     </style>
 </head>
 
@@ -55,13 +103,12 @@
 
 <body>
 	<div id = "container" style="text-align: center;">
-		<p> Tic Tac Toe</p>
-		<?php	
-			
-			echo "<div style = 'text-align:center;'><h3>My Role : $role</h3></div>";
+		<p class="title" style="color: white; font-size: 35px"> Tic Tac Toe</p>
+		<?php				
+			echo "<div style = 'text-align:center;color: white;'><h3>My Role : $role</h3></div>";
 		?>
-		<div>Player1 (Circle) <span id="turn_circle">&larr;</span></div>
-    	<div>Player2 (Cross) <span id="turn_cross" hidden>&larr;</span></div>     	
+		<div style="color: white;">Player1 (Circle) <span id="turn_circle">&larr;</span></div>
+    	<div style="color: white;">Player2 (Cross) <span id="turn_cross" hidden>&larr;</span></div>     	
 		<div id="containertable">
 			<table style="margin-left: auto;margin-right: auto;">
         	<tr>
@@ -137,8 +184,8 @@
 		</div>
     	
     	<p id="textku">For debug</p>
-    	<h1 hidden>The winner is None</h1>
-    	<button id="restart">Restart</button>
+    	<h1 hidden style="color: white;">The winner is None</h1>
+    	<button id="restart" style="height: 50px; width: 349.5px">Restart</button>
 	</div>    
 </body>
 
