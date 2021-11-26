@@ -55,7 +55,7 @@
 
 <body>
 	<div id = "container" style="text-align: center;">
-		<h1 > Tic Tac Toe</h1>
+		<p> Tic Tac Toe</p>
 		<?php	
 			
 			echo "<div style = 'text-align:center;'><h3>My Role : $role</h3></div>";
@@ -136,7 +136,7 @@
     	</table>
 		</div>
     	
-    	<!-- <p id="textku">For debug</p> -->
+    	<p id="textku">For debug</p>
     	<h1 hidden>The winner is None</h1>
     	<button id="restart">Restart</button>
 	</div>    
@@ -150,6 +150,7 @@
         "none", "none", "none"
     ];
     var stateOfBoard_json = "";
+    var game_is_done = false;
 
     $(document).ready(function() {    	
         for (let i = 1; i < stateOfBoard.length + 1; i++) {
@@ -157,7 +158,7 @@
         }
 
         $('.button_board').click(function() {
-            if (last_turn !== role) {
+            if (last_turn !== role && stateOfBoard[this.id - 1] == "none" && game_is_done == false) {
                 last_turn = role;
                 $(this).children('*').hide();
                 $(this).children("." + role).show();
@@ -177,6 +178,17 @@
 
             }
         });
+        
+        // return true if all values in stateOfBoard is not "none"
+        function board_is_filled(arr_stateOfBoard) {
+            var board_is_filled = true;
+            for (let i = 0; i < stateOfBoard.length; i++) {
+                if(arr_stateOfBoard[i] == "none") {
+                    board_is_filled = false;
+                } 
+            }
+            return board_is_filled;
+        }
 
         setInterval(function() {
             $.post(ajax_updateBoard, {}).done(function(data_dr_server) {
@@ -217,27 +229,30 @@
                     (stateOfBoard[0] === stateOfBoard[4]) && (stateOfBoard[4] === stateOfBoard[8]) && (stateOfBoard[4] != "none") ||
                     (stateOfBoard[2] === stateOfBoard[4]) && (stateOfBoard[4] === stateOfBoard[6]) && (stateOfBoard[4] != "none")
                 ) {
+                    game_is_done = true;
                     $("h1").text("The winner is " + last_turn);
                     $("h1").show();
-                } else {
+                } else if (board_is_filled(stateOfBoard) == true) {
+                    game_is_done = true;
+                    $("h1").text("Draw! ");
+                    $("h1").show();
+                }
+                else {
                     $("h1").hide();
                 }
-
-                //$("#textku").text(data_dr_server);
-                // $("#textku").text(stateOfBoard);
-
             })
-        }, 2000);
+        }, 100);
 
         $('input').click(function() {
             role = $(this).val();
         });
 
         $('#restart').click(function() {
+            game_is_done = false;
             $("h1").hide();
             role = '<?php echo $role ?>';
             last_turn = "cross";
-            window.alert("Role = " + role +  " last_turn = " + last_turn);
+            // window.alert("Role = " + role +  " last_turn = " + last_turn);
             stateOfBoard = ["none", "none", "none",
                 "none", "none", "none",
                 "none", "none", "none"
@@ -245,9 +260,9 @@
             stateOfBoard_json = JSON.stringify(stateOfBoard);
             $.post(ajax_boardState, {
                 stateOfBoard: stateOfBoard_json,
-                role: last_turn
+                role: last_turn,
             }).done(function(data_dr_server) {
-                // $("#textku").text(data_dr_server);
+                $("#textku").text(data_dr_server);
             });
         })
 
